@@ -1,7 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const config = require("config");
 
 const items = require('./routes/api/items');
+const users = require('./routes/api/users');
+const auths = require('./routes/api/auth');
 
 const app = express();
 
@@ -9,16 +12,19 @@ const app = express();
 app.use(express.json());
 
 // DB config
-const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI');
 
+mongoose.set('useCreateIndex', true);
 // Connect to mango
 mongoose
-    .connect(db,{useNewUrlParser: true})
+    .connect(db,{useNewUrlParser: true, useUnifiedTopology: true,})
     .then(() => console.log('MangoDB connected'))
     .catch(err => console.log(err));
 
 // Any file looking for api/items should refer items variable
 app.use('/api/items', items);
+app.use('/api/users', users);
+app.use('/api/auth', auths);
 
 const port = process.env.PORT || 5000;
 

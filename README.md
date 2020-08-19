@@ -1,10 +1,20 @@
 # Shopping-List-Using-MERN
 
-To run only Server
-### 'npm run server'
+> Shopping list app built with the MERN stack along with Redux for state management, Reactstrap and react-transition-group. JWT for authentication
 
-To run only Client
-### 'npm run client'
+```bash
+# Install dependencies for server
+npm install
 
-Run both concurrently
-### 'npm run dev'
+# Install dependencies for client
+npm run client-install
+
+# Run the client & server with concurrently
+npm run dev
+
+# Run the Express server only
+npm run server
+
+# Run the React client only
+npm run client
+```
